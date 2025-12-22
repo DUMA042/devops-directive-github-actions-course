@@ -31,5 +31,5 @@ jobs:
           echo "Target environment: $TARGET_ENVIRONMENT"
 
       - name: Print Job Scope
-        run: echo "$MY_VAR" # Output: "Job Value"    
+        run: echo "$MY_VAR" # Output: "Job Valuejj"    
           
