@@ -6,6 +6,11 @@ on:
     branches: [ "main" ]  
     
   workflow_dispatch:
+      inputs:
+       user_selected_env:      # ← INPUT: User chooses at runtime
+        description: 'Select environment'
+        required: true
+        default: 'staging'
  
 
 jobs:
@@ -13,3 +18,12 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - run: echo "Hello from an inline bash script in a GitHub Action Workflow!"
+      
+      - name: Convert INPUT to ENV VAR
+        env:
+          # Convert user input to environment variable
+          TARGET_ENVIRONMENT: ${{ github.event.inputs.user_selected_env }}
+        run: |
+          # NOW it's an environment variable!
+          echo "Target environment: $TARGET_ENVIRONMENT"
+          
